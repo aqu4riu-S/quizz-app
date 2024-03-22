@@ -52,6 +52,108 @@ function App() {
         ],
         correctAnswer: 1,
       },
+      {
+        id: 5,
+        question: "Qual não é uma prática saudável para o sistema excretor?",
+        choices: [
+          "Evitar ingerir carnes vermelhas",
+          "Evitar a toma prolongada de certos medicamentos",
+          "Evitar ter uma higiene cuidada, para prevenir infeções urinárias",
+          "Beber 1,5 - 3 litros de água",
+        ],
+        correctAnswer: 2,
+      },
+      {
+        id: 6,
+        question: "Os pulmões excretam ____ e ____.",
+        choices: [
+          "vapor de água, oxigénio",
+          "dióxido de carbono, oxigénio",
+          "vapor de água e dióxido de carbono",
+          "ureia e dióxido de carbono",
+        ],
+        correctAnswer: 2,
+      },
+      {
+        id: 7,
+        question: "O órgão responsável pelo armazenamento da urina é:",
+        choices: ["bexiga", "ureter", "uretra", "rim"],
+        correctAnswer: 0,
+      },
+      {
+        id: 8,
+        question: "O órgão responsável pela filtragem do sangue é:",
+        choices: ["bexiga", "ureter", "uretra", "rim"],
+        correctAnswer: 3,
+      },
+      {
+        id: 9,
+        question: "Os órgãos responsáveis pelo transporte da urina são:",
+        choices: [
+          "bexiga e ureteres",
+          "ureteres e rins",
+          "uretra e bexiga",
+          "ureteres e uretra",
+        ],
+        correctAnswer: 3,
+      },
+      {
+        id: 10,
+        question: "Qual destas não é uma patologia do sistema excretor?",
+        choices: [
+          "cálculos renais",
+          "AVC",
+          "infeção urinária",
+          "insuficiência renal",
+        ],
+        correctAnswer: 1,
+      },
+      {
+        id: 11,
+        question: "O suor e a urina têm uma composição química semelhante.",
+        choices: ["Verdadeiro", "Falso"],
+        correctAnswer: 0,
+      },
+      {
+        id: 12,
+        question: "A urina é composta, maioritariamente, por ureia.",
+        choices: ["Verdadeiro", "Falso"],
+        correctAnswer: 1,
+      },
+      {
+        id: 13,
+        question: "Os rins produzem, por dia, cerca de ____ litros de urina:",
+        choices: ["2", "1,5", "3", "1"],
+        correctAnswer: 1,
+      },
+      {
+        id: 14,
+        question: "Quais são os três principais produtos de excreção?",
+        choices: [
+          "Dióxido de carbono, oxigénio e urina",
+          "Suor, dióxido de carbono e sangue",
+          "Dióxido de carbono, sangue e suor",
+          "Dióxido de carbono, suor e urina",
+        ],
+        correctAnswer: 3,
+      },
+      {
+        id: 15,
+        question: "___ % da urina é composta por ureia.",
+        choices: ["2", "4", "45", "95"],
+        correctAnswer: 0,
+      },
+      {
+        id: 16,
+        question: "Qual o percurso da urina, desde os rins, até ao exterior?",
+        choices: [
+          "Rins - Uretra - Bexiga - Ureteres - Exterior",
+          "Rins - Ureteres - Bexiga - Uretra - Exterior",
+          "Rins - Exterior - Ureteres - Bexiga - Uretra",
+          "Bexiga - Ureteres - Rins - Uretra - Exterior",
+        ],
+        correctAnswer: 1,
+      },
     ],
   };
 
@@ -132,7 +234,7 @@ function App() {
                 <span className="text-xl text-blue-600 font-bold pr-1">
                   {round}/
                 </span>
-                <span className="text-sm text-gray-400">5</span>
+                <span className="text-sm text-gray-400">4</span>
               </p>
             </div>
             <div className="question my-6 text-3xl">
@@ -158,7 +260,7 @@ function App() {
         <div className="aside bg-white text-black grow p-4 rounded-lg">
           <PersonsList personsLst={playersPoints} />
           <h1 className="text-3xl text-center text-blue-800 font-bold">
-            🏆 {winner} 🥇
+            🏆 {winner.join(", ")} 🥇
           </h1>
         </div>
       )}
