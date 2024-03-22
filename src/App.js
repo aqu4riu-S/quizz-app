@@ -22,10 +22,10 @@ function App() {
 
   const [winner, setWinner] = useState("");
 
-  function findWinner() {
+  function findWinner(updatedPoints) {
     let winner = [];
     let max = 0;
-    playersPoints.forEach((player) => {
+    updatedPoints.forEach((player) => {
       if (player.points === max) {
         winner.push(player.name);
       } else if (player.points > max) {
@@ -42,21 +42,23 @@ function App() {
   }
 
   function updatePlayerPoints() {
-    if (activeAnswer === quiz.questions[questionsAnswered].correctAnswer) {
-      setPlayersPoints(
-        playersPoints
-          .slice()
-          .map((player) =>
-            player.id === playerIndex
-              ? { ...player, points: player.points + 1 }
-              : player
-          )
+    const updatedPoints = playersPoints
+      .slice()
+      .map((player) =>
+        player.id === playerIndex
+          ? { ...player, points: player.points + 1 }
+          : player
       );
+
+    if (activeAnswer === quiz.questions[questionsAnswered].correctAnswer) {
+      setPlayersPoints(updatedPoints);
     }
+
+    return updatedPoints;
   }
 
   function handleSubmitAnswer() {
-    updatePlayerPoints();
+    const updatedPoints = updatePlayerPoints();
     setActiveAnswer((prevActiveAnswer) => null);
 
     setQuestionsAnswered((prevQuestionsAnswered) => prevQuestionsAnswered + 1);
@@ -66,7 +68,7 @@ function App() {
 
     if (noQuestions === questionsAnswered + 1) {
       setIsGameOn((prevIsGameOn) => false);
-      setWinner(() => findWinner());
+      setWinner(findWinner(updatedPoints));
     }
   }
 
