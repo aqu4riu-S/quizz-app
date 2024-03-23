@@ -9,7 +9,7 @@ export default function Answer({
       onClick={() => onHandleClickAnswer(id)}
       className={
         activeAnswer === id
-          ? "bg-blue-200 answer list-none border rounded-lg border-gray-400 p-4 mb-3 cursor-pointer border-blue-400 border-2"
+          ? "bg-blue-200 answer list-none rounded-lg  p-4 mb-3 cursor-pointer border-blue-400 border-2"
           : "answer list-none border rounded-lg border-gray-400 p-4 mb-3 cursor-pointer hover:border-blue-400"
       }
     >

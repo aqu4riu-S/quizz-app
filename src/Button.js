@@ -5,7 +5,7 @@ export default function Button({ onHandleSubmitAnswer, activeAnswer }) {
         onClick={() => onHandleSubmitAnswer()}
         className={
           activeAnswer !== null
-            ? "answer-btn text-white bg-blue-400 hover:bg-blue-600 py-2 px-6 rounded-lg"
+            ? "btn-primary"
             : "answer-btn text-white bg-gray-400 py-2 px-6 rounded-lg"
         }
         disabled={activeAnswer === null}

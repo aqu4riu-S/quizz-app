@@ -17,12 +17,12 @@ function App() {
   const [playerIndex, setPlayerIndex] = useState(0);
   const [activeAnswer, setActiveAnswer] = useState(null);
 
-  const [isGameOn, setIsGameOn] = useState(false);
+  const [isGameOn, setIsGameOn] = useState(true);
   const noQuestions = quiz.questions.length;
 
   const [winner, setWinner] = useState("");
 
-  const [isSetup, setIsSetup] = useState(true);
+  const [isSetup, setIsSetup] = useState(false);
   const [noPlayers, setNoPlayers] = useState(2);
 
   function findWinner(updatedPoints) {
@@ -67,6 +67,7 @@ function App() {
     setQuestionsAnswered((prevQuestionsAnswered) => prevQuestionsAnswered + 1);
     setPlayerIndex(() => (playerIndex + 1) % 4);
 
+    // TO-DO make 4 dynamic (noRounds)
     if ((questionsAnswered + 1) % 4 === 0) setRound(() => round + 1);
 
     if (noQuestions === questionsAnswered + 1) {
@@ -83,53 +84,55 @@ function App() {
 
   return (
     <div className="App bg-blue-500 text-white px-16 h-screen flex items-center gap-16">
-      <div className="text-black w-2/4">
-        <form action="">
-          <div className="text-black mb-8">
-            <label for="noRounds" className="mr-4 text-2xl">
-              Número de rondas:
-            </label>
-            <select id="noRounds" name="noRounds">
-              {Array.from({ length: 7 }, (_, index) => index + 4).map((idx) => (
-                <option key={idx} value={idx}>
-                  {idx}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <div className="flex justify-between items-center mb-6">
-              <button
-                onClick={(e) => handleAddPlayer(e, false)}
-                className="text-white bg-blue-400 hover:bg-blue-600 py-2 px-10 rounded-full text-lg"
-              >
-                -
-              </button>
-              <button
-                onClick={(e) => handleAddPlayer(e, true)}
-                className="text-white bg-blue-400 hover:bg-blue-600 py-2 px-10 rounded-full text-lg"
-              >
-                +
-              </button>
+      {isSetup && (
+        <div className="text-black w-2/4">
+          <form action="">
+            <div className="text-black mb-8">
+              <label for="noRounds" className="mr-4 text-2xl">
+                Número de rondas:
+              </label>
+              <select id="noRounds" name="noRounds">
+                {Array.from({ length: 7 }, (_, index) => index + 4).map(
+                  (idx) => (
+                    <option key={idx} value={idx}>
+                      {idx}
+                    </option>
+                  )
+                )}
+              </select>
             </div>
-            {Array.from({ length: noPlayers }, (_, index) => index + 1).map(
-              (idx) => (
-                <input
-                  key={idx}
-                  type="text"
-                  placeholder={`Jogador ${idx}`}
-                  className="w-full mb-6 p-4 rounded-lg"
-                />
-              )
-            )}
-          </div>
-          <div className="flex justify-center">
-            <button className="text-white bg-blue-800 hover:bg-blue-900 py-4 px-8 rounded-3xl mb-4 text-lg font-bold">
-              Começar o jogo
-            </button>
-          </div>
-        </form>
-      </div>
+            <div>
+              <div className="flex justify-between items-center mb-6">
+                <button
+                  onClick={(e) => handleAddPlayer(e, false)}
+                  className="btn-sm"
+                >
+                  -
+                </button>
+                <button
+                  onClick={(e) => handleAddPlayer(e, true)}
+                  className="btn-sm"
+                >
+                  +
+                </button>
+              </div>
+              {Array.from({ length: noPlayers }, (_, index) => index + 1).map(
+                (idx) => (
+                  <input
+                    key={idx}
+                    type="text"
+                    placeholder={`Jogador ${idx}`}
+                    className="w-full mb-6 p-4 rounded-lg"
+                  />
+                )
+              )}
+            </div>
+            <div className="flex justify-center">
+              <button className="btn-secondary">Começar o jogo</button>
+            </div>
+          </form>
+        </div>
+      )}
 
       {isGameOn && (
         <>
