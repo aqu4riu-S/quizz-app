@@ -2,7 +2,7 @@ import { useState } from "react";
 import AnswersList from "./AnswersList.js";
 import PersonsList from "./PersonsList.js";
 import Button from "./Button.js";
-import quiz from "./quiz.js";
+import quiz from "./quiz2.js";
 import Form from "./Form.js";
 
 function App() {
@@ -15,12 +15,11 @@ function App() {
   const [activeAnswer, setActiveAnswer] = useState(null);
 
   const [isGameOn, setIsGameOn] = useState(false);
-  const noQuestions = quiz.questions.length;
+  const noQuestions = noRounds * playersPoints.length;
 
   const [winner, setWinner] = useState("");
 
   const [isSetup, setIsSetup] = useState(true);
-  const [noPlayers, setNoPlayers] = useState(2);
   const [hasAnswered, setHasAnswered] = useState(false);
 
   function findWinner() {
@@ -70,10 +69,12 @@ function App() {
     setActiveAnswer((prevActiveAnswer) => null);
 
     setQuestionsAnswered((prevQuestionsAnswered) => prevQuestionsAnswered + 1);
-    setPlayerIndex(() => (playerIndex + 1) % noRounds);
+    setPlayerIndex(() => (playerIndex + 1) % playersPoints.length);
 
     // TO-DO make 4 dynamic (noRounds)
-    if ((questionsAnswered + 1) % noRounds === 0) setRound(() => round + 1);
+    if ((questionsAnswered + 1) % playersPoints.length === 0) {
+      setRound(() => round + 1);
+    }
 
     if (noQuestions === questionsAnswered + 1) {
       setIsGameOn((prevIsGameOn) => false);
@@ -93,18 +94,7 @@ function App() {
     setNoRounds(noRounds);
     setPlayersPoints(playersArr);
     setIsSetup(false);
-  }
-
-  function handleStartGame(noRounds, playersList) {
-    // { name: "Bruno", points: 0, id: 0}
-    let playersArr = [];
-    Object.keys(playersList).forEach((key, idx) =>
-      playersArr.push({ name: playersList[key], points: 0, id: idx })
-    );
-
-    setNoRounds(noRounds);
-    setPlayersPoints(playersArr);
-    setIsSetup(false);
+    setIsGameOn(true);
   }
 
   return (
@@ -113,58 +103,62 @@ function App() {
 
       {isGameOn && !isSetup && (
         <>
-          <div className="main w-2/3 p-8 bg-white text-black rounded-xl">
-            <div className="header flex justify-between items-center text-lg">
-              <p className="text-blue-600 font-bold text-xl">
-                {playersPoints.at(playerIndex).name}
-              </p>
-              <p>Perguntas respondidas: {questionsAnswered}</p>
-              <p>
-                Ronda{" "}
-                <span className="text-xl text-blue-600 font-bold pr-1">
-                  {round}/
-                </span>
-                <span className="text-sm text-gray-400">4</span>
-              </p>
+          <div className="bg-blue-500 text-white px-16 h-screen flex items-center gap-16">
+            <div className="main w-2/3 p-8 bg-white text-black rounded-xl">
+              <div className="header flex justify-between items-center text-lg">
+                <p className="text-blue-600 font-bold text-xl">
+                  {playersPoints.at(playerIndex).name}
+                </p>
+                <p>Perguntas respondidas: {questionsAnswered}</p>
+                <p>
+                  Ronda{" "}
+                  <span className="text-xl text-blue-600 font-bold pr-1">
+                    {round}/
+                  </span>
+                  <span className="text-sm text-gray-400">{noRounds}</span>
+                </p>
+              </div>
+              <div className="question my-6 text-3xl">
+                <p>{quiz.questions[questionsAnswered].question}</p>
+              </div>
+              <AnswersList
+                questionObj={quiz.questions[questionsAnswered]}
+                onHandleClickAnswer={handleClickAnswer}
+                activeAnswer={activeAnswer}
+                hasAnswered={hasAnswered}
+              />
+              <div className="flex justify-between mt-8">
+                <Button
+                  onClick={handleSubmitAnswer}
+                  activeCond={activeAnswer != null && !hasAnswered}
+                  btnStyle={"btn-primary"}
+                >
+                  Responder
+                </Button>
+                <Button
+                  onClick={handleNextQuestion}
+                  activeCond={hasAnswered}
+                  btnStyle={"btn-terciary"}
+                >
+                  Continuar
+                </Button>
+              </div>
             </div>
-            <div className="question my-6 text-3xl">
-              <p>{quiz.questions[questionsAnswered].question}</p>
+            <div className="aside bg-white text-black w-1/3 p-8 rounded-lg">
+              <PersonsList personsLst={playersPoints} />
             </div>
-            <AnswersList
-              questionObj={quiz.questions[questionsAnswered]}
-              onHandleClickAnswer={handleClickAnswer}
-              activeAnswer={activeAnswer}
-              hasAnswered={hasAnswered}
-            />
-            <div className="flex justify-between mt-8">
-              <Button
-                onClick={handleSubmitAnswer}
-                activeCond={activeAnswer != null && !hasAnswered}
-                btnStyle={"btn-primary"}
-              >
-                Responder
-              </Button>
-              <Button
-                onClick={handleNextQuestion}
-                activeCond={hasAnswered}
-                btnStyle={"btn-terciary"}
-              >
-                Continuar
-              </Button>
-            </div>
-          </div>
-          <div className="aside bg-white text-black w-1/3 p-8 rounded-lg">
-            <PersonsList personsLst={playersPoints} />
           </div>
         </>
       )}
 
       {!isGameOn && !isSetup && (
-        <div className="aside bg-white text-black grow p-6 rounded-lg w-1/3">
-          <PersonsList personsLst={playersPoints} />
-          <h1 className="text-3xl text-center text-blue-800 font-bold">
-            🏆 {winner.join(", ")} 🥇
-          </h1>
+        <div className=" bg-blue-500 text-white px-16 h-screen flex items-center gap-16">
+          <div className="aside bg-white text-black grow p-6 rounded-lg w-1/3">
+            <PersonsList personsLst={playersPoints} />
+            <h1 className="text-3xl text-center text-blue-800 font-bold">
+              🏆 {winner.join(", ")} 🥇
+            </h1>
+          </div>
         </div>
       )}
     </div>
