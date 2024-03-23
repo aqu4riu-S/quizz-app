@@ -21,11 +21,12 @@ function App() {
   const noQuestions = quiz.questions.length;
 
   const [winner, setWinner] = useState("");
+  const [hasAnswered, setHasAnswered] = useState(false);
 
-  function findWinner(updatedPoints) {
+  function findWinner() {
     let winner = [];
     let max = 0;
-    updatedPoints.forEach((player) => {
+    playersPoints.forEach((player) => {
       if (player.points === max) {
         winner.push(player.name);
       } else if (player.points > max) {
@@ -58,9 +59,13 @@ function App() {
   }
 
   function handleSubmitAnswer() {
-    const updatedPoints = updatePlayerPoints();
+    updatePlayerPoints();
+    setHasAnswered(true);
+    // Reset Active Answer
     setActiveAnswer((prevActiveAnswer) => null);
+  }
 
+  function handleNextQuestion() {
     setQuestionsAnswered((prevQuestionsAnswered) => prevQuestionsAnswered + 1);
     setPlayerIndex(() => (playerIndex + 1) % 4);
 
@@ -68,7 +73,7 @@ function App() {
 
     if (noQuestions === questionsAnswered + 1) {
       setIsGameOn((prevIsGameOn) => false);
-      setWinner(findWinner(updatedPoints));
+      setWinner(findWinner());
     }
   }
 
@@ -98,10 +103,22 @@ function App() {
               onHandleClickAnswer={handleClickAnswer}
               activeAnswer={activeAnswer}
             />
-            <Button
-              onHandleSubmitAnswer={handleSubmitAnswer}
-              activeAnswer={activeAnswer}
-            />
+            <div className="flex justify-between mt-8">
+              <Button
+                onClick={handleSubmitAnswer}
+                activeCond={activeAnswer}
+                btnStyle={"btn-primary"}
+              >
+                Responder
+              </Button>
+              <Button
+                onClick={handleNextQuestion}
+                activeCond={hasAnswered}
+                btnStyle={"btn-terciary"}
+              >
+                Continuar
+              </Button>
+            </div>
           </div>
           <div className="aside bg-white text-black w-1/3 p-8 rounded-lg">
             <PersonsList personsLst={playersPoints} />
