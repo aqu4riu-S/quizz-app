@@ -1,17 +1,14 @@
-export default function Button({ onHandleSubmitAnswer, activeAnswer }) {
+export default function Button({ onClick, activeCond, btnStyle, children }) {
+  const buttonStyle =
+    activeCond !== null && activeCond !== false ? btnStyle : "btn-disabled";
   return (
-    <div className="mt-8 flex justify-end">
-      <button
-        onClick={() => onHandleSubmitAnswer()}
-        className={
-          activeAnswer !== null
-            ? "btn-primary"
-            : "answer-btn text-white bg-gray-400 py-2 px-6 rounded-lg"
-        }
-        disabled={activeAnswer === null}
-      >
-        Responder
-      </button>
-    </div>
+    <button
+      onClick={() => onClick()}
+      className={buttonStyle}
+      // activeCond can be null (activeAnswer) or false (hasAnswered)
+      disabled={activeCond === null || !activeCond}
+    >
+      {children}
+    </button>
   );
 }

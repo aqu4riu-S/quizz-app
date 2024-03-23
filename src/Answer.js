@@ -3,19 +3,40 @@ export default function Answer({
   activeAnswer,
   id,
   answerContent,
+  hasAnswered,
+  correctAnswer,
 }) {
   return (
-    <li
-      onClick={() => onHandleClickAnswer(id)}
-      className={
-        activeAnswer === id
-          ? "bg-blue-200 answer list-none rounded-lg  p-4 mb-3 cursor-pointer border-blue-400 border-2"
-          : "answer list-none border rounded-lg border-gray-400 p-4 mb-3 cursor-pointer hover:border-blue-400"
-      }
-    >
-      <div>
-        <p>{answerContent}</p>
-      </div>
-    </li>
+    <>
+      {hasAnswered && (
+        <li
+          className={
+            id === activeAnswer && activeAnswer !== correctAnswer
+              ? "answer bg-red-200 cursor-not-allowed border-red-500"
+              : correctAnswer === id
+                ? "answer bg-green-200 cursor-not-allowed border-green-500"
+                : "answer  border-gray-400 cursor-not-allowed hover:border-blue-400"
+          }
+        >
+          <div>
+            <p>{answerContent}</p>
+          </div>
+        </li>
+      )}
+      {!hasAnswered && (
+        <li
+          onClick={() => onHandleClickAnswer(id)}
+          className={
+            activeAnswer === id
+              ? "answer bg-blue-200 cursor-pointer border-blue-400"
+              : "answer border-gray-400 cursor-pointer hover:border-blue-400"
+          }
+        >
+          <div>
+            <p>{answerContent}</p>
+          </div>
+        </li>
+      )}
+    </>
   );
 }

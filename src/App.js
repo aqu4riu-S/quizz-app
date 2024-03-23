@@ -1,5 +1,5 @@
-import AnswersList from "./AnswersList.js";
 import { useState } from "react";
+import AnswersList from "./AnswersList.js";
 import PersonsList from "./PersonsList.js";
 import Button from "./Button.js";
 import quiz from "./quiz.js";
@@ -21,11 +21,12 @@ function App() {
 
   const [isSetup, setIsSetup] = useState(true);
   const [noPlayers, setNoPlayers] = useState(2);
+  const [hasAnswered, setHasAnswered] = useState(false);
 
-  function findWinner(updatedPoints) {
+  function findWinner() {
     let winner = [];
     let max = 0;
-    updatedPoints.forEach((player) => {
+    playersPoints.forEach((player) => {
       if (player.points === max) {
         winner.push(player.name);
       } else if (player.points > max) {
@@ -58,7 +59,14 @@ function App() {
   }
 
   function handleSubmitAnswer() {
-    const updatedPoints = updatePlayerPoints();
+    updatePlayerPoints();
+    setHasAnswered(true);
+    // Reset Active Answer
+    // setActiveAnswer((prevActiveAnswer) => null);
+  }
+
+  function handleNextQuestion() {
+    // Reset Active Answer
     setActiveAnswer((prevActiveAnswer) => null);
 
     setQuestionsAnswered((prevQuestionsAnswered) => prevQuestionsAnswered + 1);
@@ -68,9 +76,23 @@ function App() {
     if ((questionsAnswered + 1) % noRounds === 0) setRound(() => round + 1);
 
     if (noQuestions === questionsAnswered + 1) {
-      setIsGameOn(!isGameOn);
-      setWinner(findWinner(updatedPoints));
+      setIsGameOn((prevIsGameOn) => false);
+      setWinner(findWinner());
     }
+
+    setHasAnswered(false);
+  }
+
+  function handleStartGame(noRounds, playersList) {
+    // { name: "Bruno", points: 0, id: 0}
+    let playersArr = [];
+    Object.keys(playersList).forEach((key, idx) =>
+      playersArr.push({ name: playersList[key], points: 0, id: idx })
+    );
+
+    setNoRounds(noRounds);
+    setPlayersPoints(playersArr);
+    setIsSetup(false);
   }
 
   function handleStartGame(noRounds, playersList) {
