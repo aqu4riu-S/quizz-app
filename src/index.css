@@ -3,6 +3,12 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@layer base {
+  li {
+    list-style: none;
+  }
+}
+
 @layer components {
   .btn-primary {
     @apply text-white bg-blue-400 hover:bg-blue-600 py-2 px-6 rounded-lg;
@@ -14,5 +20,9 @@
 
   .btn-disabled {
     @apply text-white bg-gray-400 py-2 px-6 rounded-lg;
+  }
+
+  .answer {
+    @apply p-4 mb-3 border rounded-lg;
   }
 }

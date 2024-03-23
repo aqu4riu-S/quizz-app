@@ -6,17 +6,16 @@ export default function Answer({
   hasAnswered,
   correctAnswer,
 }) {
-  const basicStyle = "list-none rounded-lg p-4 mb-3 cursor-pointer border-2";
   return (
     <>
       {hasAnswered && (
         <li
           className={
             id === activeAnswer && activeAnswer !== correctAnswer
-              ? "bg-red-300 answer list-none rounded-lg p-4 mb-3 cursor-not-allowed border-red-500 border-2"
+              ? "answer bg-red-200 cursor-not-allowed border-red-500"
               : correctAnswer === id
-                ? "bg-green-300 answer list-none rounded-lg p-4 mb-3 cursor-not-allowed border-green-500 border-2"
-                : "answer list-none border rounded-lg border-gray-400 p-4 mb-3 cursor-not-allowed hover:border-blue-400"
+                ? "answer bg-green-200 cursor-not-allowed border-green-500"
+                : "answer  border-gray-400 cursor-not-allowed hover:border-blue-400"
           }
         >
           <div>
@@ -29,8 +28,8 @@ export default function Answer({
           onClick={() => onHandleClickAnswer(id)}
           className={
             activeAnswer === id
-              ? "bg-blue-200 answer list-none rounded-lg p-4 mb-3 cursor-pointer border-blue-400 border-2"
-              : "answer list-none border rounded-lg border-gray-400 p-4 mb-3 cursor-pointer hover:border-blue-400"
+              ? "answer bg-blue-200 cursor-pointer border-blue-400"
+              : "answer border-gray-400 cursor-pointer hover:border-blue-400"
           }
         >
           <div>

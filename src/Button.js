@@ -4,7 +4,8 @@ export default function Button({ onClick, activeCond, btnStyle, children }) {
     <button
       onClick={() => onClick()}
       className={buttonStyle}
-      disabled={activeCond === null}
+      // activeCond can be null (activeAnswer) or false (hasAnswered)
+      disabled={activeCond === null || !activeCond}
     >
       {children}
     </button>
