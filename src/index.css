@@ -3,6 +3,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+* {
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
 @layer base {
   li {
     list-style: none;

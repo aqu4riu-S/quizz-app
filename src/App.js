@@ -1,5 +1,5 @@
-import AnswersList from "./AnswersList.js";
 import { useState } from "react";
+import AnswersList from "./AnswersList.js";
 import PersonsList from "./PersonsList.js";
 import Button from "./Button.js";
 import quiz from "./quiz.js";
@@ -112,7 +112,7 @@ function App() {
             <div className="flex justify-between mt-8">
               <Button
                 onClick={handleSubmitAnswer}
-                activeCond={activeAnswer && !hasAnswered}
+                activeCond={activeAnswer != null && !hasAnswered}
                 btnStyle={"btn-primary"}
               >
                 Responder
@@ -133,7 +133,7 @@ function App() {
       )}
 
       {!isGameOn && (
-        <div className="aside bg-white text-black grow p-4 rounded-lg">
+        <div className="aside bg-white text-black grow p-6 rounded-lg w-1/3">
           <PersonsList personsLst={playersPoints} />
           <h1 className="text-3xl text-center text-blue-800 font-bold">
             🏆 {winner.join(", ")} 🥇
