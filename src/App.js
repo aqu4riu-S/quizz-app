@@ -62,10 +62,13 @@ function App() {
     updatePlayerPoints();
     setHasAnswered(true);
     // Reset Active Answer
-    setActiveAnswer((prevActiveAnswer) => null);
+    // setActiveAnswer((prevActiveAnswer) => null);
   }
 
   function handleNextQuestion() {
+    // Reset Active Answer
+    setActiveAnswer((prevActiveAnswer) => null);
+
     setQuestionsAnswered((prevQuestionsAnswered) => prevQuestionsAnswered + 1);
     setPlayerIndex(() => (playerIndex + 1) % 4);
 
@@ -75,6 +78,8 @@ function App() {
       setIsGameOn((prevIsGameOn) => false);
       setWinner(findWinner());
     }
+
+    setHasAnswered(false);
   }
 
   return (
@@ -102,6 +107,7 @@ function App() {
               questionObj={quiz.questions[questionsAnswered]}
               onHandleClickAnswer={handleClickAnswer}
               activeAnswer={activeAnswer}
+              hasAnswered={hasAnswered}
             />
             <div className="flex justify-between mt-8">
               <Button

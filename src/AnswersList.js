@@ -4,6 +4,7 @@ export default function AnswersList({
   questionObj,
   onHandleClickAnswer,
   activeAnswer,
+  hasAnswered,
 }) {
   return (
     <div className="answers-container">
@@ -14,6 +15,8 @@ export default function AnswersList({
           key={index}
           id={index}
           answerContent={answer}
+          hasAnswered={hasAnswered}
+          correctAnswer={questionObj.correctAnswer}
         />
       ))}
     </div>
