@@ -112,7 +112,7 @@ function App() {
             <div className="flex justify-between mt-8">
               <Button
                 onClick={handleSubmitAnswer}
-                activeCond={activeAnswer}
+                activeCond={activeAnswer && !hasAnswered}
                 btnStyle={"btn-primary"}
               >
                 Responder
