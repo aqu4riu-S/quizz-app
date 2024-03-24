@@ -60,8 +60,6 @@ function App() {
   function handleSubmitAnswer() {
     updatePlayerPoints();
     setHasAnswered(true);
-    // Reset Active Answer
-    // setActiveAnswer((prevActiveAnswer) => null);
   }
 
   function handleNextQuestion() {
@@ -71,7 +69,6 @@ function App() {
     setQuestionsAnswered((prevQuestionsAnswered) => prevQuestionsAnswered + 1);
     setPlayerIndex(() => (playerIndex + 1) % playersPoints.length);
 
-    // TO-DO make 4 dynamic (noRounds)
     if ((questionsAnswered + 1) % playersPoints.length === 0) {
       setRound(() => round + 1);
     }
