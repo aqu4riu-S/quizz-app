@@ -125,20 +125,27 @@ function App() {
                 hasAnswered={hasAnswered}
               />
               <div className="flex justify-between mt-8">
-                <Button
-                  onClick={handleSubmitAnswer}
-                  activeCond={activeAnswer != null && !hasAnswered}
-                  btnStyle={"btn-primary"}
-                >
-                  Responder
-                </Button>
-                <Button
-                  onClick={handleNextQuestion}
-                  activeCond={hasAnswered}
-                  btnStyle={"btn-terciary"}
-                >
-                  Continuar
-                </Button>
+                <div>
+                  <p>
+                    Dificuldade: {quiz.questions[questionsAnswered].difficulty}
+                  </p>
+                </div>
+                <div className="flex gap-6">
+                  <Button
+                    onClick={handleSubmitAnswer}
+                    activeCond={activeAnswer != null && !hasAnswered}
+                    btnStyle={"btn-primary"}
+                  >
+                    Responder
+                  </Button>
+                  <Button
+                    onClick={handleNextQuestion}
+                    activeCond={hasAnswered}
+                    btnStyle={"btn-terciary"}
+                  >
+                    Continuar
+                  </Button>
+                </div>
               </div>
             </div>
             <div className="aside bg-white text-black w-1/3 p-8 rounded-lg">
