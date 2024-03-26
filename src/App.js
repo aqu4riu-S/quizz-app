@@ -121,7 +121,7 @@ function App() {
   return (
     <div className="App">
       {isSetup && (
-        <div className="bg-blue-500 text-white px-16 py-8 h-screen flex justify-between">
+        <div className="bg-blue-500 text-white py-8 h-screen flex justify-evenly">
           <Form onHandleStartGame={handleStartGame} />
           <Gallery galleryLst={courses} />
         </div>

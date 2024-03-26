@@ -34,7 +34,7 @@ export default function Form({ onHandleStartGame }) {
   }
 
   return (
-    <div className="text-black w-2/4 h-full bg-gray-200 p-8 rounded-xl">
+    <div className="text-black w-2/5 h-full bg-gray-200 p-8 rounded-xl">
       <form action="" className="h-full">
         <div className="text-black mb-8">
           <label className="mr-4 text-2xl">Número de rondas:</label>
