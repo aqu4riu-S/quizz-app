@@ -1,4 +1,4 @@
-const quiz = {
+const _quiz = {
   topic: "Sistema Excretor",
   questions: [
     {
@@ -366,7 +366,7 @@ const quiz = {
     },
     {
       id: 36,
-      question: "Cuidados a ter com a pele",
+      question: "Qual destes não é um cuidado a ter com a pele?",
       choices: [
         "Tomar banho e vestir roupa lavada com frequência, se possível diariamente",
         "Proteger a pele de cremes gordurosos",
@@ -436,4 +436,4 @@ const quiz = {
   ],
 };
 
-export default quiz;
+export default _quiz;

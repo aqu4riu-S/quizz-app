@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AnswersList from "./AnswersList.js";
 import PersonsList from "./PersonsList.js";
 import Button from "./Button.js";
-import quiz from "./quiz2.js";
+import _quiz from "./quiz2.js";
 import Form from "./Form.js";
 import Gallery from "./Gallery.js";
 
@@ -24,6 +24,8 @@ function App() {
   const [hasAnswered, setHasAnswered] = useState(false);
 
   const [isMultiplayer, setIsMultiplayer] = useState(true);
+
+  const [quiz, setQuiz] = useState(_quiz);
 
   const courses = [
     {
@@ -47,6 +49,19 @@ function App() {
       course: "Pele",
     },
   ];
+
+  useEffect(() => {
+    const tempQuiz = _quiz.questions.slice();
+    for (let i = _quiz.questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = tempQuiz[j];
+      tempQuiz[j] = tempQuiz[i];
+      tempQuiz[i] = temp;
+      // [tempQuiz[i], tempQuiz[j]] = [tempQuiz[j], tempQuiz[i]];
+    }
+    setQuiz({ ..._quiz, questions: tempQuiz });
+    console.log(tempQuiz);
+  }, []);
 
   function findWinner() {
     let winner = [];
