@@ -4,6 +4,7 @@ import PersonsList from "./PersonsList.js";
 import Button from "./Button.js";
 import quiz from "./quiz2.js";
 import Form from "./Form.js";
+import Gallery from "./Gallery.js";
 
 function App() {
   const [playersPoints, setPlayersPoints] = useState([]);
@@ -21,6 +22,29 @@ function App() {
 
   const [isSetup, setIsSetup] = useState(true);
   const [hasAnswered, setHasAnswered] = useState(false);
+
+  const courses = [
+    {
+      source: "imgs/courses/excretor.jpg.webp",
+      altText: "course image",
+      course: "Sistema Excretor",
+    },
+    {
+      source: "imgs/courses/cardiovascular.jpg.webp",
+      altText: "course image",
+      course: "Sistema Cardiovascular",
+    },
+    {
+      source: "imgs/courses/reprodutor.jpg.webp",
+      altText: "course image",
+      course: "Sistema Reprodutor",
+    },
+    {
+      source: "imgs/courses/pele.jpeg",
+      altText: "course image",
+      course: "Pele",
+    },
+  ];
 
   function findWinner() {
     let winner = [];
@@ -96,7 +120,12 @@ function App() {
 
   return (
     <div className="App">
-      {isSetup && <Form onHandleStartGame={handleStartGame} />}
+      {isSetup && (
+        <div className="bg-blue-500 text-white px-16 py-8 h-screen flex justify-between">
+          <Form onHandleStartGame={handleStartGame} />
+          <Gallery galleryLst={courses} />
+        </div>
+      )}
 
       {isGameOn && !isSetup && (
         <>
@@ -125,12 +154,41 @@ function App() {
                 hasAnswered={hasAnswered}
               />
               <div className="flex justify-between mt-8">
-                <div>
-                  <p>
-                    Dificuldade: {quiz.questions[questionsAnswered].difficulty}
-                  </p>
+                <div className="flex items-center gap-2">
+                  <p>Dificuldade:</p>
+                  <div className="flex justify-center items-center gap-2">
+                    {Array.from(
+                      {
+                        length: Number(
+                          quiz.questions[questionsAnswered].difficulty
+                        ),
+                      },
+                      (_, index) => (
+                        <img
+                          src="imgs/star-full.png"
+                          alt="full star"
+                          className="w-5"
+                          key={index}
+                        />
+                      )
+                    )}
+                    {Array.from(
+                      {
+                        length:
+                          3 -
+                          Number(quiz.questions[questionsAnswered].difficulty),
+                      },
+                      (_, index) => (
+                        <img
+                          src="imgs/star-empty.png"
+                          alt="empty star"
+                          className="w-5"
+                        />
+                      )
+                    )}
+                  </div>
                 </div>
-                <div className="flex gap-6">
+                <div className="flex items-center gap-6">
                   <Button
                     onClick={handleSubmitAnswer}
                     activeCond={activeAnswer != null && !hasAnswered}

@@ -11,7 +11,7 @@ const quiz = {
         "Rins, Ureteres, Bexiga e Urina",
       ],
       correctAnswer: 2,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ const quiz = {
         "Ácido úrico, ureia e água",
       ],
       correctAnswer: 3,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 3,
@@ -36,7 +36,7 @@ const quiz = {
         "filtrado, rins, bexiga, ureteres",
       ],
       correctAnswer: 3,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 4,
@@ -48,7 +48,7 @@ const quiz = {
         "coração, artéria renal",
       ],
       correctAnswer: 1,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 5,
@@ -60,7 +60,7 @@ const quiz = {
         "Beber 1,5 - 3 litros de água",
       ],
       correctAnswer: 2,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 6,
@@ -72,21 +72,21 @@ const quiz = {
         "ureia e dióxido de carbono",
       ],
       correctAnswer: 2,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 7,
       question: "O órgão responsável pelo armazenamento da urina é:",
       choices: ["bexiga", "ureter", "uretra", "rim"],
       correctAnswer: 0,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 8,
       question: "O órgão responsável pela filtragem do sangue é:",
       choices: ["bexiga", "ureter", "uretra", "rim"],
       correctAnswer: 3,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 9,
@@ -98,7 +98,7 @@ const quiz = {
         "ureteres e uretra",
       ],
       correctAnswer: 3,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 10,
@@ -110,28 +110,28 @@ const quiz = {
         "insuficiência renal",
       ],
       correctAnswer: 1,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 11,
       question: "O suor e a urina têm uma composição química semelhante.",
       choices: ["Verdadeiro", "Falso"],
       correctAnswer: 0,
-      difficulty: "intermédia",
+      difficulty: "2",
     },
     {
       id: 12,
       question: "A urina é composta, maioritariamente, por ureia.",
       choices: ["Verdadeiro", "Falso"],
       correctAnswer: 1,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 13,
       question: "Os rins produzem, por dia, cerca de ____ litros de urina:",
       choices: ["2", "1,5", "3", "1"],
       correctAnswer: 1,
-      difficulty: "difícil",
+      difficulty: "3",
     },
     {
       id: 14,
@@ -143,14 +143,14 @@ const quiz = {
         "Dióxido de carbono, suor e urina",
       ],
       correctAnswer: 3,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 15,
       question: "___ % da urina é composta por ureia.",
       choices: ["2", "4", "45", "95"],
       correctAnswer: 0,
-      difficulty: "difícil",
+      difficulty: "3",
     },
     {
       id: 16,
@@ -162,7 +162,7 @@ const quiz = {
         "Bexiga - Ureteres - Rins - Uretra - Exterior",
       ],
       correctAnswer: 1,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 17,
@@ -175,7 +175,7 @@ const quiz = {
         "Com paredes elásticas e válvulas para regular o fluxo de urina",
       ],
       correctAnswer: 0,
-      difficulty: "intermédia",
+      difficulty: "2",
     },
     {
       id: 18,
@@ -187,7 +187,7 @@ const quiz = {
         "saída de dióxido de carbono",
       ],
       correctAnswer: 1,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 19,
@@ -200,14 +200,14 @@ const quiz = {
         "I: Falsa, II: Falsa",
       ],
       correctAnswer: 2,
-      difficulty: "difícil",
+      difficulty: "3",
     },
     {
       id: 20,
       question: "A urina e o suor são excreções do organismo.",
       choices: ["Verdadeiro", "Falso"],
       correctAnswer: 0,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 21,
@@ -220,7 +220,7 @@ const quiz = {
         "I: pele, II: sistema respiratório, III: sistema urinário",
       ],
       correctAnswer: 2,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 22,
@@ -228,7 +228,7 @@ const quiz = {
         "Identifica o processo através do qual o organismo elimina as substâncias produzidas de que não necessita",
       choices: ["Secreção", "Expulsão", "Excreção", "Remoção"],
       correctAnswer: 2,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 23,
@@ -240,7 +240,7 @@ const quiz = {
         "bexiga, artéria renal",
       ],
       correctAnswer: 2,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 24,
@@ -252,7 +252,7 @@ const quiz = {
         "Transportar a urina para fora do corpo",
       ],
       correctAnswer: 1,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 25,
@@ -264,7 +264,7 @@ const quiz = {
         "Suor",
       ],
       correctAnswer: 1,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 26,
@@ -277,14 +277,14 @@ const quiz = {
         "Expulsa a urina através dos rins",
       ],
       correctAnswer: 2,
-      difficulty: "difícil",
+      difficulty: "3",
     },
     {
       id: 27,
       question: "A pele é formada por ____ camadas.",
       choices: ["duas", "três", "quatro", "cinco"],
       correctAnswer: 0,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 28,
@@ -296,21 +296,21 @@ const quiz = {
         "Sobderme u subderme",
       ],
       correctAnswer: 1,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 29,
       question: "A camada mais fina e superficial da pele digna-se de ____.",
       choices: ["derme", "subderme", "sobderme", "epiderme"],
       correctAnswer: 3,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 30,
       question: "A camada mais espessa e profunda da pele designa-se de ____.",
       choices: ["derme", "subderme", "sobderme", "epiderme"],
       correctAnswer: 0,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 31,
@@ -318,7 +318,7 @@ const quiz = {
         "Qual a camada da pele rica em vasos sanguíneos e glândulas sudoríparas?",
       choices: ["derme", "subderme", "sobderme", "epiderme"],
       correctAnswer: 0,
-      difficulty: "intermédia",
+      difficulty: "2",
     },
     {
       id: 32,
@@ -331,14 +331,14 @@ const quiz = {
         "glândulas pancreáticas",
       ],
       correctAnswer: 2,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 33,
       question: "O suor é expulso pela pele, mais concretamente por:",
       choices: ["poros", "válvulas", "septo", "capilares"],
       correctAnswer: 0,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 34,
@@ -350,7 +350,7 @@ const quiz = {
         "Glicose e oxigénio",
       ],
       correctAnswer: 0,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 35,
@@ -362,7 +362,7 @@ const quiz = {
         "Regular os níveis de glicose no sangue",
       ],
       correctAnswer: 3,
-      difficulty: "intermédia",
+      difficulty: "2",
     },
     {
       id: 36,
@@ -374,7 +374,7 @@ const quiz = {
         "Proteger a pele contra a ação prolongada dos raios solares",
       ],
       correctAnswer: 1,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 37,
@@ -386,7 +386,7 @@ const quiz = {
         "Função protetora",
       ],
       correctAnswer: 0,
-      difficulty: "intermédia",
+      difficulty: "2",
     },
     {
       id: 38,
@@ -398,7 +398,7 @@ const quiz = {
         "Diminui a produção de suor, o que ajuda a arrefecer o corpo quando este é evaporado.",
       ],
       correctAnswer: 0,
-      difficulty: "difícil",
+      difficulty: "3",
     },
     {
       id: 39,
@@ -409,7 +409,7 @@ const quiz = {
         "Proteger contra organismos estranhos.",
       ],
       correctAnswer: 1,
-      difficulty: "intermédia",
+      difficulty: "2",
     },
     {
       id: 40,
@@ -420,7 +420,7 @@ const quiz = {
         "Proteger contra organismos estranhos.",
       ],
       correctAnswer: 2,
-      difficulty: "fácil",
+      difficulty: "1",
     },
     {
       id: 41,
@@ -431,7 +431,7 @@ const quiz = {
         "Proteger contra organismos estranhos.",
       ],
       correctAnswer: 0,
-      difficulty: "fácil",
+      difficulty: "1",
     },
   ],
 };
