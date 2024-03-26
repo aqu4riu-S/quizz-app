@@ -1,6 +1,9 @@
 import { useState } from "react";
 
 export default function Form({ onHandleStartGame }) {
+  //const { minPlayers, maxPlayers } = [2, 6];
+  //const { minRounds, maxRounds } = [4, 20];
+
   const [noRounds, setNoRounds] = useState(4);
   const [playersList, setPLayersList] = useState(
     Object.fromEntries(
@@ -8,10 +11,14 @@ export default function Form({ onHandleStartGame }) {
     )
   );
 
+  const [isMultiplayer, setIsMultiplayer] = useState(true);
+
   const [noPlayers, setNoPlayers] = useState(2);
 
   function handleAddPlayer(e, isToAdd) {
     e.preventDefault();
+
+    if (noPlayers > 1 && noPlayers < 6) setIsMultiplayer(true);
 
     if (isToAdd && noPlayers < 6) {
       setNoPlayers(noPlayers + 1);
@@ -33,6 +40,13 @@ export default function Form({ onHandleStartGame }) {
     setPLayersList({ ...playersList, [name]: value });
   }
 
+  function handleGameMode(noPlayers) {
+    const slicedEntries = Object.entries(playersList).slice(0, noPlayers);
+    setPLayersList(Object.fromEntries(slicedEntries));
+    setNoPlayers(noPlayers);
+    if (noPlayers === 1) setIsMultiplayer(false);
+  }
+
   return (
     <div className="text-black w-2/5 h-full bg-gray-200 p-8 rounded-xl">
       <form action="" className="h-full">
@@ -44,13 +58,41 @@ export default function Form({ onHandleStartGame }) {
             value={noRounds}
             onChange={(e) => setNoRounds(e.target.value)}
           >
-            {Array.from({ length: 17 }, (_, index) => index + 4).map((idx) => (
-              <option key={idx} value={idx}>
-                {idx}
-              </option>
-            ))}
+            {Array.from({ length: 22 - 4 }, (_, index) => index + 4).map(
+              (idx) => (
+                <option key={idx} value={idx}>
+                  {idx}
+                </option>
+              )
+            )}
           </select>
         </div>
+        <div>
+          <button
+            type="button"
+            className="btn-sm"
+            onClick={() => handleGameMode(1)}
+          >
+            Um jogador
+          </button>
+          <button
+            type="button"
+            className="btn-sm"
+            onClick={() => handleGameMode(2)}
+          >
+            Vários jogadores
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              onHandleStartGame(noRounds, playersList, isMultiplayer)
+            }
+            className="btn-secondary"
+          >
+            Começar o jogo
+          </button>
+        </div>
+
         <div>
           <div className="flex justify-between items-center mb-6">
             <button
@@ -58,13 +100,6 @@ export default function Form({ onHandleStartGame }) {
               className="btn-sm"
             >
               -
-            </button>
-            <button
-              type="button"
-              onClick={() => onHandleStartGame(noRounds, playersList)}
-              className="btn-secondary"
-            >
-              Começar o jogo
             </button>
             <button
               onClick={(e) => handleAddPlayer(e, true)}

@@ -23,6 +23,8 @@ function App() {
   const [isSetup, setIsSetup] = useState(true);
   const [hasAnswered, setHasAnswered] = useState(false);
 
+  const [isMultiplayer, setIsMultiplayer] = useState(true);
+
   const courses = [
     {
       source: "imgs/courses/excretor.jpg.webp",
@@ -105,7 +107,7 @@ function App() {
     setHasAnswered(false);
   }
 
-  function handleStartGame(noRounds, playersList) {
+  function handleStartGame(noRounds, playersList, isMultiplayerMode) {
     // { name: "Bruno", points: 0, id: 0}
     let playersArr = [];
     Object.keys(playersList).forEach((key, idx) =>
@@ -116,6 +118,7 @@ function App() {
     setPlayersPoints(playersArr);
     setIsSetup(false);
     setIsGameOn(true);
+    setIsMultiplayer(isMultiplayerMode);
   }
 
   return (
@@ -216,10 +219,24 @@ function App() {
       {!isGameOn && !isSetup && (
         <div className=" bg-blue-500 text-white px-16 h-screen flex items-center gap-16">
           <div className="aside bg-white text-black grow p-6 rounded-lg w-1/3">
-            <PersonsList personsLst={playersPoints} />
-            <h1 className="text-3xl text-center text-blue-800 font-bold">
-              🏆 {winner.join(", ")} 🥇
-            </h1>
+            {isMultiplayer && (
+              <>
+                <PersonsList personsLst={playersPoints} />
+                <h1 className="text-3xl text-center text-blue-800 font-bold">
+                  🏆 {winner.join(", ")} 🥇
+                </h1>
+              </>
+            )}
+            {!isMultiplayer && (
+              <>
+                <h1 className="text-3xl text-center text-blue-800 font-bold">
+                  {playersPoints.at(0).name}
+                </h1>
+                <p className="text-lg text-center">
+                  {playersPoints.at(0).points}/{questionsAnswered}
+                </p>
+              </>
+            )}
           </div>
         </div>
       )}
