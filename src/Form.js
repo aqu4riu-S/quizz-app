@@ -49,7 +49,10 @@ export default function Form({ onHandleStartGame }) {
 
   return (
     <div className="text-black w-2/5 h-full bg-gray-200 p-8 rounded-xl">
-      <form action="" className="h-full">
+      <form
+        onSubmit={() => onHandleStartGame(noRounds, playersList, isMultiplayer)}
+        className="h-full"
+      >
         <div className="text-black mb-8">
           <label className="mr-4 text-2xl">Número de rondas:</label>
           <select
@@ -82,13 +85,7 @@ export default function Form({ onHandleStartGame }) {
           >
             Vários jogadores
           </button>
-          <button
-            type="button"
-            onClick={() =>
-              onHandleStartGame(noRounds, playersList, isMultiplayer)
-            }
-            className="btn-secondary"
-          >
+          <button type="submit" className="btn-secondary">
             Começar o jogo
           </button>
         </div>
@@ -115,6 +112,7 @@ export default function Form({ onHandleStartGame }) {
                   key={idx}
                   type="text"
                   placeholder={`Jogador ${idx}`}
+                  required
                   className="w-full mb-6 p-4 rounded-lg"
                   name={`Player ${idx}`}
                   value={playersList[`Player ${idx}`]}

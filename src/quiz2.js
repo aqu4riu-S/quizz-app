@@ -433,6 +433,71 @@ const _quiz = {
       correctAnswer: 0,
       difficulty: "1",
     },
+    {
+      id: 42,
+      question: "Quais são os maiores compartimentos do coração?",
+      choices: ["Aurículas", "Ventrículos"],
+      correctAnswer: 1,
+      difficulty: "1",
+    },
+    {
+      id: 43,
+      question: "Quais os vasos que transportam o sangue para o coração?",
+      choices: ["Artérias", "Veias", "Capilares sanguíneos", "Ureteres"],
+      correctAnswer: 1,
+      difficulty: "1",
+    },
+    {
+      id: 44,
+      question: "Quais os vasos que transportam o sangue para fora do coração?",
+      choices: ["Artérias", "Veias", "Capilares sanguíneos", "Ureteres"],
+      correctAnswer: 0,
+      difficulty: "1",
+    },
+    {
+      id: 45,
+      question: "Quais os vasos que facilitam as trocas gasosas?",
+      choices: ["Artérias", "Veias", "Capilares sanguíneos", "Ureteres"],
+      correctAnswer: 2,
+      difficulty: "1",
+    },
+    {
+      id: 46,
+      question:
+        "Qual a circulação na qual o sangue é transportado a todos os órgãos e tecidos?",
+      choices: ["Sistémica", "Pulmonar", "Tecidual", "Respiratória"],
+      correctAnswer: 0,
+      difficulty: "1",
+    },
+    {
+      id: 47,
+      question:
+        "Qual a circulação na qual o sangue é transportado para os pulmões?",
+      choices: ["Sistémica", "Pulmonar", "Tecidual", "Respiratória"],
+      correctAnswer: 1,
+      difficulty: "1",
+    },
+    {
+      id: 48,
+      question: "Quais os vasos com paredes mais espessas?",
+      choices: ["Artérias", "Veias", "Capilares", "Ureteres"],
+      correctAnswer: 0,
+      difficulty: "1",
+    },
+    {
+      id: 49,
+      question: "Quais os vasos que possuem válvulas?",
+      choices: ["Artérias", "Veias", "Capilares", "Ureteres"],
+      correctAnswer: 1,
+      difficulty: "1",
+    },
+    {
+      id: 50,
+      question: "Quais os vasos com uma única camada de células?",
+      choices: ["Artérias", "Veias", "Capilares", "Ureteres"],
+      correctAnswer: 2,
+      difficulty: "1",
+    },
   ],
 };
 
