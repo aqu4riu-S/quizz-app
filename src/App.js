@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import AnswersList from "./AnswersList.js";
 import PersonsList from "./PersonsList.js";
 import Button from "./Button.js";
-import _quiz from "./quiz2.js";
+import _quiz from "./quiz3.js";
 import Form from "./Form.js";
 import Gallery from "./Gallery.js";
+import Difficulty from "./Difficulty.js";
 
 function App() {
   const [playersPoints, setPlayersPoints] = useState([]);
@@ -61,14 +62,9 @@ function App() {
 
   useEffect(() => {
     const tempQuiz = _quiz.questions.slice();
-    for (let i = _quiz.questions.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = tempQuiz[j];
-      tempQuiz[j] = tempQuiz[i];
-      tempQuiz[i] = temp;
-      // [tempQuiz[i], tempQuiz[j]] = [tempQuiz[j], tempQuiz[i]];
-    }
-    tempQuiz.forEach((questionObj) => {
+    const shuffledQuiz = shuffleArray(tempQuiz);
+
+    shuffledQuiz.forEach((questionObj) => {
       const originalChoices = questionObj.choices.slice();
 
       const shuffledChoices = shuffleArray(originalChoices);
@@ -77,19 +73,10 @@ function App() {
         questionObj.choices[questionObj.correctAnswer]
       );
 
-      // console.log(questionObj.question);
-      // console.log(questionObj.choices);
-      // console.log(questionObj.choices[questionObj.correctAnswer]);
-      // console.log(questionObj.correctAnswer);
-
-      // console.log(shuffledChoices);
-      // console.log(correctIndex);
-
       questionObj.correctAnswer = correctIndex;
       questionObj.choices = shuffledChoices;
     });
-    setQuiz({ ..._quiz, questions: tempQuiz });
-    console.log(tempQuiz);
+    setQuiz({ ..._quiz, questions: shuffledQuiz });
   }, []);
 
   function findWinner() {
@@ -201,40 +188,9 @@ function App() {
                 hasAnswered={hasAnswered}
               />
               <div className="flex justify-between mt-8">
-                <div className="flex items-center gap-2">
-                  <p>Dificuldade:</p>
-                  <div className="flex justify-center items-center gap-2">
-                    {Array.from(
-                      {
-                        length: Number(
-                          quiz.questions[questionsAnswered].difficulty
-                        ),
-                      },
-                      (_, index) => (
-                        <img
-                          src="imgs/star-full.png"
-                          alt="full star"
-                          className="w-5"
-                          key={index}
-                        />
-                      )
-                    )}
-                    {Array.from(
-                      {
-                        length:
-                          3 -
-                          Number(quiz.questions[questionsAnswered].difficulty),
-                      },
-                      (_, index) => (
-                        <img
-                          src="imgs/star-empty.png"
-                          alt="empty star"
-                          className="w-5"
-                        />
-                      )
-                    )}
-                  </div>
-                </div>
+                <Difficulty
+                  difficulty={quiz.questions[questionsAnswered].difficulty}
+                />
                 <div className="flex items-center gap-6">
                   <Button
                     onClick={handleSubmitAnswer}

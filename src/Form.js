@@ -61,7 +61,7 @@ export default function Form({ onHandleStartGame }) {
             value={noRounds}
             onChange={(e) => setNoRounds(e.target.value)}
           >
-            {Array.from({ length: 22 - 4 }, (_, index) => index + 4).map(
+            {Array.from({ length: 28 - 4 }, (_, index) => index + 4).map(
               (idx) => (
                 <option key={idx} value={idx}>
                   {idx}
