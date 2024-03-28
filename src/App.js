@@ -50,6 +50,15 @@ function App() {
     },
   ];
 
+  // Function to shuffle an array (Fisher-Yates algorithm)
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   useEffect(() => {
     const tempQuiz = _quiz.questions.slice();
     for (let i = _quiz.questions.length - 1; i > 0; i--) {
@@ -59,6 +68,26 @@ function App() {
       tempQuiz[i] = temp;
       // [tempQuiz[i], tempQuiz[j]] = [tempQuiz[j], tempQuiz[i]];
     }
+    tempQuiz.forEach((questionObj) => {
+      const originalChoices = questionObj.choices.slice();
+
+      const shuffledChoices = shuffleArray(originalChoices);
+
+      const correctIndex = shuffledChoices.indexOf(
+        questionObj.choices[questionObj.correctAnswer]
+      );
+
+      // console.log(questionObj.question);
+      // console.log(questionObj.choices);
+      // console.log(questionObj.choices[questionObj.correctAnswer]);
+      // console.log(questionObj.correctAnswer);
+
+      // console.log(shuffledChoices);
+      // console.log(correctIndex);
+
+      questionObj.correctAnswer = correctIndex;
+      questionObj.choices = shuffledChoices;
+    });
     setQuiz({ ..._quiz, questions: tempQuiz });
     console.log(tempQuiz);
   }, []);
