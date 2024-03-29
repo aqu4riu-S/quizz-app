@@ -6,6 +6,13 @@ import _quiz from "./quiz3.js";
 import Form from "./Form.js";
 import Gallery from "./Gallery.js";
 import Difficulty from "./Difficulty.js";
+import PlayersBox from "./PlayersBox.js";
+import NavBar from "./NavBar.js";
+import QuestionsAnswered from "./QuestionsAnswered.js";
+import RoundCounter from "./RoundCounter.js";
+import CurrentPlayer from "./CurrentPlayer.js";
+import Footer from "./Footer.js";
+import Main from "./Main.js";
 
 function App() {
   const [playersPoints, setPlayersPoints] = useState([]);
@@ -153,91 +160,78 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App bg-blue-500 text-white px-16 h-screen flex items-center gap-16">
       {isSetup && (
-        <div className="bg-blue-500 text-white py-8 h-screen flex justify-evenly">
+        <>
           <Form onHandleStartGame={handleStartGame} />
           <Gallery galleryLst={courses} />
-        </div>
+        </>
       )}
 
       {isGameOn && !isSetup && (
         <>
-          <div className="bg-blue-500 text-white px-16 h-screen flex items-center gap-16">
-            <div className="main w-2/3 p-8 bg-white text-black rounded-xl">
-              <div className="header flex justify-between items-center text-lg">
-                <p className="text-blue-600 font-bold text-xl">
-                  {playersPoints.at(playerIndex).name}
-                </p>
-                <p>Perguntas respondidas: {questionsAnswered}</p>
-                <p>
-                  Ronda{" "}
-                  <span className="text-xl text-blue-600 font-bold pr-1">
-                    {round}/
-                  </span>
-                  <span className="text-sm text-gray-400">{noRounds}</span>
-                </p>
-              </div>
-              <div className="question my-6 text-3xl">
-                <p>{quiz.questions[questionsAnswered].question}</p>
-              </div>
+          <div className="main w-2/3 p-8 bg-white text-black rounded-xl">
+            <NavBar>
+              <CurrentPlayer playerName={playersPoints.at(playerIndex).name} />
+              <QuestionsAnswered questionsAnswered={questionsAnswered} />
+              <RoundCounter round={round} noRounds={noRounds} />
+            </NavBar>
+            <Main question={quiz.questions[questionsAnswered].question}>
               <AnswersList
                 questionObj={quiz.questions[questionsAnswered]}
                 onHandleClickAnswer={handleClickAnswer}
                 activeAnswer={activeAnswer}
                 hasAnswered={hasAnswered}
               />
-              <div className="flex justify-between mt-8">
-                <Difficulty
-                  difficulty={quiz.questions[questionsAnswered].difficulty}
-                />
-                <div className="flex items-center gap-6">
-                  <Button
-                    onClick={handleSubmitAnswer}
-                    activeCond={activeAnswer != null && !hasAnswered}
-                    btnStyle={"btn-primary"}
-                  >
-                    Responder
-                  </Button>
-                  <Button
-                    onClick={handleNextQuestion}
-                    activeCond={hasAnswered}
-                    btnStyle={"btn-terciary"}
-                  >
-                    Continuar
-                  </Button>
-                </div>
+            </Main>
+            <Footer>
+              <Difficulty
+                difficulty={quiz.questions[questionsAnswered].difficulty}
+              />
+              <div className="flex items-center gap-6">
+                <Button
+                  onClick={handleSubmitAnswer}
+                  activeCond={activeAnswer != null && !hasAnswered}
+                  btnStyle={"btn-primary"}
+                >
+                  Responder
+                </Button>
+                <Button
+                  onClick={handleNextQuestion}
+                  activeCond={hasAnswered}
+                  btnStyle={"btn-terciary"}
+                >
+                  Continuar
+                </Button>
               </div>
-            </div>
-            <div className="aside bg-white text-black w-1/3 p-8 rounded-lg">
-              <PersonsList personsLst={playersPoints} />
-            </div>
+            </Footer>
           </div>
+          <PlayersBox>
+            <PersonsList personsLst={playersPoints} />
+          </PlayersBox>
         </>
       )}
 
       {!isGameOn && !isSetup && (
-        <div className=" bg-blue-500 text-white px-16 h-screen flex items-center gap-16">
-          <div className="aside bg-white text-black grow p-6 rounded-lg w-1/3">
-            {isMultiplayer && (
-              <>
-                <PersonsList personsLst={playersPoints} />
-                <h1 className="text-3xl text-center text-blue-800 font-bold">
-                  🏆 {winner.join(", ")} 🥇
-                </h1>
-              </>
-            )}
-            {!isMultiplayer && (
-              <>
-                <h1 className="text-3xl text-center text-blue-800 font-bold">
-                  {playersPoints.at(0).name}
-                </h1>
-                <p className="text-lg text-center">
-                  {playersPoints.at(0).points}/{questionsAnswered}
-                </p>
-              </>
-            )}
-          </div>
+        <div className="aside bg-white text-black grow p-6 rounded-lg w-1/3">
+          {isMultiplayer && (
+            <>
+              <PersonsList personsLst={playersPoints} />
+              <h1 className="text-3xl text-center text-blue-800 font-bold">
+                🏆 {winner.join(", ")} 🥇
+              </h1>
+            </>
+          )}
+          {!isMultiplayer && (
+            <>
+              <h1 className="text-3xl text-center text-blue-800 font-bold">
+                {playersPoints.at(0).name}
+              </h1>
+              <p className="text-lg text-center">
+                {playersPoints.at(0).points}/{questionsAnswered}
+              </p>
+            </>
+          )}
         </div>
       )}
     </div>
