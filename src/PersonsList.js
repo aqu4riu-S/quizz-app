@@ -5,7 +5,6 @@ export default function PersonsList({ personsLst }) {
 
   return (
     <div className="personsLst">
-      <h1 className="text-xl mb-6 text-center">Jogadores</h1>
       {sortedPlayers.map((person) => (
         <Person
           key={person.name}

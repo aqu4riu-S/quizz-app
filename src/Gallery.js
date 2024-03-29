@@ -2,9 +2,9 @@ import GalleryItem from "./GalleryItem";
 
 export default function Gallery({ galleryLst }) {
   return (
-    <div className="bg-white text-black rounded-xl p-8">
-      <h1 className="text-2xl mb-6">Selecionar temas:</h1>
-      <div className="grid grid-cols-4 gap-4">
+    <div className="bg-white w-1/2 text-black rounded-xl px-10 py-12">
+      <h1 className="text-2xl text-center mb-8">Selecionar Temas</h1>
+      <div className="grid grid-cols-3 gap-4">
         {galleryLst.map((itemObj, index) => (
           <GalleryItem
             src={itemObj.source}

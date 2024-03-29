@@ -48,7 +48,7 @@ export default function Form({ onHandleStartGame }) {
   }
 
   return (
-    <div className="text-black w-2/5 h-full bg-gray-200 p-8 rounded-xl">
+    <div className="text-black w-1/2 bg-gray-200 p-8 rounded-xl overflow-auto">
       <form
         onSubmit={() => onHandleStartGame(noRounds, playersList, isMultiplayer)}
         className="h-full"
@@ -70,7 +70,7 @@ export default function Form({ onHandleStartGame }) {
             )}
           </select>
         </div>
-        <div>
+        <div className="flex justify-between items-center gap-6">
           <button
             type="button"
             className="btn-sm"
@@ -78,15 +78,15 @@ export default function Form({ onHandleStartGame }) {
           >
             Um jogador
           </button>
+          <button type="submit" className="btn-secondary">
+            Começar o jogo
+          </button>
           <button
             type="button"
             className="btn-sm"
             onClick={() => handleGameMode(2)}
           >
             Vários jogadores
-          </button>
-          <button type="submit" className="btn-secondary">
-            Começar o jogo
           </button>
         </div>
 
@@ -113,7 +113,7 @@ export default function Form({ onHandleStartGame }) {
                   type="text"
                   placeholder={`Jogador ${idx}`}
                   required
-                  className="w-full mb-6 p-4 rounded-lg"
+                  className="w-full mb-4 p-4 rounded-lg"
                   name={`Player ${idx}`}
                   value={playersList[`Player ${idx}`]}
                   onChange={handlePlayerNameChange}

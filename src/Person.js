@@ -3,8 +3,8 @@ export default function Person({ name, points, id }) {
     <div
       className={
         id % 2 === 0
-          ? "person bg-blue-600 mb-4 p-4 rounded-lg text-white"
-          : "person bg-blue-200 mb-4 p-4 rounded-lg text-black"
+          ? "person bg-blue-600 mb-5 p-4 rounded-lg text-white"
+          : "person bg-blue-200 mb-5 p-4 rounded-lg text-black"
       }
     >
       <p>

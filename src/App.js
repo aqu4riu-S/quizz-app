@@ -13,6 +13,10 @@ import RoundCounter from "./RoundCounter.js";
 import CurrentPlayer from "./CurrentPlayer.js";
 import Footer from "./Footer.js";
 import Main from "./Main.js";
+import QuestionBox from "./QuestionBox.js";
+import PlayersResults from "./PlayersResults.js";
+import SinglePlayerResults from "./SinglePlayerResults.js";
+import MultiPlayerResults from "./MultiPlayerResults.js";
 
 function App() {
   const [playersPoints, setPlayersPoints] = useState([]);
@@ -160,7 +164,7 @@ function App() {
   }
 
   return (
-    <div className="App bg-blue-500 text-white px-16 h-screen flex items-center gap-16">
+    <div className="App bg-blue-500 text-white p-16 h-screen flex gap-16">
       {isSetup && (
         <>
           <Form onHandleStartGame={handleStartGame} />
@@ -170,12 +174,13 @@ function App() {
 
       {isGameOn && !isSetup && (
         <>
-          <div className="main w-2/3 p-8 bg-white text-black rounded-xl">
+          <QuestionBox>
             <NavBar>
               <CurrentPlayer playerName={playersPoints.at(playerIndex).name} />
               <QuestionsAnswered questionsAnswered={questionsAnswered} />
               <RoundCounter round={round} noRounds={noRounds} />
             </NavBar>
+
             <Main question={quiz.questions[questionsAnswered].question}>
               <AnswersList
                 questionObj={quiz.questions[questionsAnswered]}
@@ -184,28 +189,28 @@ function App() {
                 hasAnswered={hasAnswered}
               />
             </Main>
+
             <Footer>
               <Difficulty
                 difficulty={quiz.questions[questionsAnswered].difficulty}
               />
-              <div className="flex items-center gap-6">
-                <Button
-                  onClick={handleSubmitAnswer}
-                  activeCond={activeAnswer != null && !hasAnswered}
-                  btnStyle={"btn-primary"}
-                >
-                  Responder
-                </Button>
-                <Button
-                  onClick={handleNextQuestion}
-                  activeCond={hasAnswered}
-                  btnStyle={"btn-terciary"}
-                >
-                  Continuar
-                </Button>
-              </div>
+              <Button
+                onClick={handleSubmitAnswer}
+                activeCond={activeAnswer != null && !hasAnswered}
+                btnStyle={"btn-primary"}
+              >
+                Responder
+              </Button>
+              <Button
+                onClick={handleNextQuestion}
+                activeCond={hasAnswered}
+                btnStyle={"btn-terciary"}
+              >
+                Continuar
+              </Button>
             </Footer>
-          </div>
+          </QuestionBox>
+
           <PlayersBox>
             <PersonsList personsLst={playersPoints} />
           </PlayersBox>
@@ -213,26 +218,19 @@ function App() {
       )}
 
       {!isGameOn && !isSetup && (
-        <div className="aside bg-white text-black grow p-6 rounded-lg w-1/3">
+        <PlayersResults>
           {isMultiplayer && (
-            <>
+            <MultiPlayerResults winner={winner}>
               <PersonsList personsLst={playersPoints} />
-              <h1 className="text-3xl text-center text-blue-800 font-bold">
-                🏆 {winner.join(", ")} 🥇
-              </h1>
-            </>
+            </MultiPlayerResults>
           )}
           {!isMultiplayer && (
-            <>
-              <h1 className="text-3xl text-center text-blue-800 font-bold">
-                {playersPoints.at(0).name}
-              </h1>
-              <p className="text-lg text-center">
-                {playersPoints.at(0).points}/{questionsAnswered}
-              </p>
-            </>
+            <SinglePlayerResults
+              playerObj={playersPoints[0]}
+              questionsAnswered={questionsAnswered}
+            />
           )}
-        </div>
+        </PlayersResults>
       )}
     </div>
   );
